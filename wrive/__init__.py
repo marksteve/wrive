@@ -1,5 +1,6 @@
 from cachecore import RedisCache
 from flask import Flask, abort, render_template
+import msgpack
 import requests
 import json
 
@@ -38,18 +39,24 @@ def index(file_id=None):
 
     # Try to get cached copy
     cache_key = '%s.%s' % (file_id, modified_date)
-    cached_response = cache.get(cache_key)
-    if cached_response:
-        return cached_response
+    cached_doc = cache.get(cache_key)
 
-    # Else retrieve doc
-    r = requests.get(doc['exportLinks']['text/html'] + '&key=' +
-                     app.config['SIMPLE_API_ACCESS_KEY'])
-    if not r.ok:
-        # r.reason
-        abort(r.status_code)
+    if cached_doc:
+        doc = msgpack.unpackb(cached_doc)
 
-    # Store doc content in cache
-    cache.set(cache_key, r.content)
+    else:
+        # Else retrieve doc
+        r = requests.get(doc['exportLinks']['text/html'] + '&key=' +
+                         app.config['SIMPLE_API_ACCESS_KEY'])
+        if not r.ok:
+            # r.reason
+            abort(r.status_code)
 
-    return r.content
+        # Store doc content in cache
+        doc['html'] = r.content
+        cache.set(cache_key, msgpack.packb(doc))
+
+    # Convert html content to json string
+    doc['html'] = json.dumps(doc['html'])
+
+    return render_template('doc.html', **doc)

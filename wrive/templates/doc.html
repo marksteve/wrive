@@ -1,0 +1,21 @@
+<!doctype html>
+    <head>
+        <title>Wrive - {{ title }}</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
+        <link rel="stylesheet" href="/static/css/base.css">
+        <link rel="stylesheet" href="/static/css/doc.css">
+    </head>
+    <h1>{{ title }}</h1>
+    <p class="owners">
+        by {{ ' ,'.join(ownerNames).lower() }}
+    </p>
+    <iframe frameBorder="0"></iframe>
+    <script>
+        var iframe = document.getElementsByTagName('iframe')[0];
+        var doc = iframe.contentDocument;
+        doc.open();
+        doc.write({{ html|safe }});
+        doc.close();
+        iframe.style.height = doc.documentElement.offsetHeight + 'px';
+    </script>
+</html>

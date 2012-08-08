@@ -2,3 +2,4 @@ cachecore
 flask
 redis
 requests
+msgpack-python
