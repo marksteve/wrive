@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Wrive</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
+        <link rel="stylesheet" href="/static/css/base.css">
+        <link rel="stylesheet" href="/static/css/app.css">
+    </head>
+    <body>
+        <section>
+            <header>
+                <h1>Wr<span class="g">i</span><span class="y">v</span><span class="b">e</span></h1>
+                <p>Simple Google Drive docs publishing</p>
+            </header>
+            <article>
+                <ol>
+                    <li>
+                        Update your document's sharing permission to <strong>Public</strong> or <strong>Anyone with a link</strong>.
+                    </li>
+                    <li>
+                        Get the document's file id and append that to Wrive's url.
+                        <aside>
+                            <h2>Example:</h2>
+                            https://docs.google.com/document/d/<strong>1OZ9...uMYA</strong>/edit
+                            {{ url_for('index', file_id='1OZ9...uMYA', _external=True) }}
+                        </aside>
+                    </li>
+                </ol>
+            </article>
+            <footer>
+                Built by <a href="https://twitter.com/themarksteve">@themarksteve</a>
+            </footer>
+        </section>
+    </body>
+</html>

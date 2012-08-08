@@ -1,0 +1,55 @@
+body {
+    font: 16px/24px Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+strong {
+    font-weight: bold;
+}
+
+h1 {
+    color: #999;
+    font-family: Courgette;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 64px;
+}
+
+h1 span.g { color: #0ba35e; }
+h1 span.y { color: #fccd48; }
+h1 span.b { color: #3c81f8; }
+
+section {
+    margin: 64px auto;
+    padding: 0 20px;
+    width: 600px;
+}
+
+header, article {
+    margin-bottom: 24px;
+}
+
+ol {
+    list-style: decimal;
+    padding-left: 40px;
+}
+
+ol li {
+    margin-bottom: 16px;
+}
+
+aside {
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 19px 0;
+}
+
+footer {
+    color: silver;
+}
+
+footer a {
+    color: #999;
+    text-decoration: none;
+}
